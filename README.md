@@ -2,8 +2,7 @@
 
 ## The Author
 
-Chris Luo, Data Analyst, Smart Dublin, Dublin City Council
-
+[Chris Luo](https://chrislu0.wordpress.com/), Data Analyst, Smart Dublin, Dublin City Council
 
 
 ## Introduction
