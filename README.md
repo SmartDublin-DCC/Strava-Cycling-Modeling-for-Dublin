@@ -4,24 +4,25 @@
 
 [Chris Luo](https://chrislu0.wordpress.com/), Data Analyst, Smart Dublin, Dublin City Council
 
-
 ## Introduction
-Planning for cycling infrastructure can be challenging because there's often a lack of detailed information on where and when people are biking. With the rise of crowdsourced data from platforms like Strava, cities now have the opportunity to gain insights beyond what traditional bike counters, such as the Eco-Counts used in Dublin, can provide. 
 
-However, crowdsourced data doesn't fully represent the entire cycling population, which means there is still much we don't know about cycling trips. Without this knowledge, planning for cycling infrastructure can feel like working with one hand tied behind your back.
+Planning for cycling infrastructure can be challenging due to the lack of detailed information on where and when people are biking. However, with the rise of crowdsourced data from platforms like Strava, cities now have the opportunity to gain insights beyond what traditional bike counters, such as the Eco-Counts used in Dublin, can provide.
 
-My project aims to fill this gap by comparing several years of Strava data with manual counts of cyclists in the context of Dublin. The idea is to use Strava to map all bicyclists by finding out by how much Strava data is representing official counts. I use regression techniques to create a model that uses Strava data to predict overall cycling volumes in Dublin at a route-based level. This is the first practice of its kind to analyze Dublin cycling trips in this way. The results show a strong correlation between Strava data and Cyclecounts in Dublin, indicating that Strava can be a good predictor of actual cycling figures at the route specific level. 
+Nevertheless, crowdsourced data doesn't fully represent the entire cycling population, which means there's still much we don't know about cycling trips. Without this knowledge, planning for cycling infrastructure can feel like working with one hand tied behind your back.
 
-In this document I will introduce the model, datasource, and results. I will also use ground truth data (cycle counts/mannual counts) to validate my model predictions. 
+My project aims to fill this gap by comparing several years of Strava data with manual counts of cyclists in the context of Dublin.  The idea is to find the relationship between existing Cycle counters and Strava Metro data (while controlling for other factors), then generalise the relationship to all Strava Metro data.​ This is the first practice of its kind to analyze Dublin cycling trips in this way. 
 
+The results show a strong correlation between Strava data and Cyclecounts in Dublin, indicating that Strava can be a good predictor of actual cycling figures at the route-specific level.
+
+In this document, I will introduce the model, data sources, and results. I will also use ground truth data (cycle counts/manual counts) to validate my model predictions.
 
 ## Strava Metro
 
-Strava is an American app for tracking physical exercise, primarily focusing on outdoor cycling and running activities using GPS data. As of 2023, Strava has 120 million registered users worldwide, according to [Business of Apps](https://www.businessofapps.com/data/strava-statistics/). 
+Strava is an American app for tracking physical exercise, primarily focusing on outdoor cycling and running activities using GPS data. As of 2023, Strava has 120 million registered users worldwide, according to [Business of Apps](https://www.businessofapps.com/data/strava-statistics/).
 
-[Strava Metro](https://metro.strava.com/) is Strava's official data platform. It contains downloadable anonymized Strava user geo-referenced and time-stamped activity data(including cycling, running and walking). The data from the platform provides excellent granularity, offering high-resolution time dimensions that can be as specific as hours and a wide coverage of areas that covers almost every streets in Dublin.
+[Strava Metro](https://metro.strava.com/) is Strava's official data platform. It contains downloadable anonymized Strava user geo-referenced and time-stamped activity data (including cycling, running, and walking). The data from the platform provides excellent granularity, offering high-resolution time dimensions that can be as specific as hours and covering almost every street in Dublin.
 
-Strava Metro acts as a great example of how companies can present user-generated data on an open and intuitive platform that enables researchers and decision-makers to have access to large amounts of high-quality activity data to put into valuable use cases.
+Strava Metro serves as a great example of how companies can present user-generated data on an open and intuitive platform, enabling researchers and decision-makers to access large amounts of high-quality activity data for valuable use cases.
 
 ## The Model and Data
 
@@ -33,31 +34,31 @@ An important observation might answer this question. The observation is the high
 
 ![Cycle Counter vs. Strava Trip Counts](Visulisations/1.png)
 
-The graph shows a high correlation between the two datasets (0.92) for Seapoint. From the graph it's also evident that the Strava data reflects the overall trends and seasonal changes of the ground truth value. It is evident that Strava data represents only a subset of the total cyclists at this location. But this observation led to the idea of using Strava data to estimate cycle counts based on their correlation because the high correlation is suggesting that Strava can be a good predictor of actual cycling figures at the route specific level. 
+The graph shows a high correlation between the two datasets (0.92) for Seapoint. It also shows that the Strava data reflects the overall trends and seasonal changes of the ground truth value. Although Strava data represents only a subset of the total cyclists at this location, it's possible to use Strava data to estimate cycle counts based on their correlation.
 
-The core question to answer then becomes: **by how much Strava cycling trip count data is representing the whole cycling population in Dublin?**
+The core question to answer then becomes: **By how much does Strava cycling trip count data represent the whole cycling population in Dublin?**
 
-To answer this question we develop a regression model that connects Strava cycling counts and actual cycle counts. After obtaining the relationsship, we can then use it as a multiplier to extrapolate the actual cycling trips based on the widely available and highly granular Strava data. 
+To answer this question, we develop a regression model that connects Strava cycling counts and actual cycle counts. After obtaining the relationship, we can then use it as a multiplier to extrapolate the actual cycling trips based on the widely available and highly granular Strava data.
 
-Thus we set the main independent variable as Strava cycling trip counts and the dependent variable of interest as the cycle counts, which are the ground truth (correct) target values.
+Thus, we set the main independent variable as Strava cycling trip counts (`strava_count`) and the dependent variable of interest as the ground truth cycle counts (`cycle_counts`), which are the ground truth (correct) target values.
 
 Cycle count data is sourced from data generated by cycle counters (EcoCounters) in various locations in Dublin. The data is available on [Dublinked](https://data.smartdublin.ie/dataset/?q=Cycle+count).
 
 Strava cycling trip counts are downloaded from Strava Metro and matched with cycle counter locations.
 
-There are also other factors that is related the Strava data's representation of the whole cycling crowd since these factors can influence cycling behaviors. Therefore, the model includes additional factors as control variables to account for these influences. Below is a list of variables and their data sources:
+There are also other factors that relate to the Strava data's representation of the whole cycling crowd since these factors can influence cycling behaviors. Therefore, the model includes additional factors as control variables to account for these influences. Below is a list of variables and their data sources:
 
 ### Table A: List of Control Variables
 
-| Variables                          | Description                                                      |
-|------------------------------------|------------------------------------------------------------------|
-| $\text{Rain}$                      | Rainfall, sourced from Met.ie                                    |
-| $\text{Regions: S, SE, N, NE}$     | Geolocation of the point of interest: South, North, Northeast, Southwest |
-| $\text{Months}$                    | Months: January to December                                      |
-| $\text{CityCenter}$                | Whether the location is in the city center (defined by the canal) |
-| $\text{Bike\_Lanes}$               | Whether the location has bike lane availability                  |
+| Variable                         | Description                                                       |
+|----------------------------------|-------------------------------------------------------------------|
+| `Rain`                 | Rainfall, sourced from Met.ie                                      |
+| Regions: `Regions_N`,`Region_NE`,`Region_SW`  | Geolocation of the point of interest: North, Northeast, Southwest |
+| Months:`month_1`,`month_2`...                  | Months: January to December                                       |
+| `CityCenter`             | Whether the location is in the city center (defined by the canal)  |
+| `Bike\_Lanes`             | Whether the location has bike lane availability                   |
 
-The model is a multiple linear regression model using Weighted Least Squares (WLS) regression. Compared to the more common Ordinary Least Squares (OLS), WLS minimizes heteroskedesticity (that is the variance is not uniform across the observed data).
+The model is a multiple linear regression model using Ordinary Least Squares (OLS) estimator.
 
 The model is given by:
 
@@ -73,91 +74,96 @@ Where:
 - $\text{strava\_counts}$ are the independent variables, the trip counts from Strava.
 - $\varepsilon$ is the error term.
 
-The descriptive statistics in Table B summarize the data across three key variables: Actual cycle counts(cycle_counts), Strava cycle counts(strava_counts), and amount of rainfall(Rain). All the data are weekly aggregated. The dataset has 2,657 observations, that is the number of observations after removing missing values. The average actual cycle count is 5,449.55 with a high standard deviation of 5,303.81, indicating significant variability.  Strava cycle count has a mean of 439.16 and an even higher standard deviation of 547.53, showing a broad range of Strava activity level across different time and location. The weekly rainfall average is 13.87 mm. 
+The descriptive statistics in Table B summarize the data across three key variables: Actual cycle counts (`cycle_counts`), Strava cycle counts (`strava_counts`), and rainfall (`rain`). All the data are weekly aggregated. The dataset has 2,657 observations, which is the number of observations after removing missing values. The average actual cycle count is 5,450 with a high standard deviation of 5,303.81, indicating significant variability. The Strava cycle count has a mean of 439.16 and an even higher standard deviation of 547.53, showing a broad range of Strava activity levels across different times and locations. The weekly rainfall average is 13.87 mm.
 
 ### Table B: Descriptive Statistics
 
-Descriptive Statistics:
-     cycle_counts  strava_counts        rain   Bike_Lanes
-count   2650.000000       2650.000000  2650.000000  2650.000000
-mean    5440.266119        439.569811    13.903321     0.971321
-std     5297.740803        547.637901    15.153541     0.166935
-min        1.000000          5.000000     0.000000     0.000000
-25%     1053.250000         55.000000     2.100000     1.000000
-50%     3449.000000        190.000000     8.300000     1.000000
-75%     8452.250000        655.000000    19.200000     1.000000
-max    26468.000000       3590.000000    73.400000     1.000000
+|               | `cycle_counts` | `strava_counts` | `rain`       | `Bike_Lanes` |
+|---------------|--------------|---------------|------------|------------|
+| count         | 2650.000000  | 2650.000000   | 2650.000000| 2650.000000|
+| mean          | 5440.266119  | 439.569811    | 13.903321  | 0.971321   |
+| std           | 5297.740803  | 547.637901    | 15.153541  | 0.166935   |
+| min           | 1.000000     | 5.000000      | 0.000000   | 0.000000   |
+| 25%           | 1053.250000  | 55.000000     | 2.100000   | 1.000000   |
+| 50%           | 3449.000000  | 190.000000    | 8.300000   | 1.000000   |
+| 75%           | 8452.250000  | 655.000000    | 19.200000  | 1.000000   |
+| max           | 26468.000000 | 3590.000000   | 73.400000  | 1.000000   |
 
+The figure below visualizes the locations of existing cycle counters in Dublin. The map highlights that all cycle counters are located within DCC and DLR, with the majority of them positioned outside the city center, indicating a bias in the representation of locations in the sample data.
 
-The figure below visualizes the locations of existing cycle counters in Dublin. The map highlights that all cycle counters are located within DCC and DLR, with the majority of them positioned outside the city center, indicating a bias in the representation of locations in the sample data. 
-
-### Figure 1: Location of existing cyclecounters
+### Figure 1: Location of Existing Cycle Counters
 
 ![Location of Cyclecounts](Visulisations/dublin.png)
 
-## Results and model performance
-After running the Weighted Least Squares (WLS) regression in Python, the results are summarized below:
+## Results and Model Performance
+
+After running the Ordinary Least Squares(OLS) regression in Python, the results are summarized below:
+
+### Table C: OLS Regression Results
+
+| **Dependent Variable:** | `cycle_count`                        | **R-squared:** | 0.823      |
+|-------------------------|------------------------------|----------------|------------|
+| **Model:**              | OLS                          | **Adj. R-squared:** | 0.821 |
+| **Method:**             | Least Squares                | **F-statistic:** | 724.5 |
+| **Prob (F-statistic):** | 0.00                        | **Log-Likelihood:** | -26053.0 |
+| **No. Observations:**   | 2831                         
 
 
-### Table C: WLS Regression Results
+| **Variable**     | **Coefficient** | **Std. Error** | **t-Statistic** | **P-value** | **[0.025** | **0.975]** |
+|------------------|-----------------|---------------|-----------------|-------------|------------|-------------|
+| constant            | -3288.1063      | 353.126       | -9.311          | 0.000       | -3980.518  | -2595.694   |
+| `strava_count` | 6.0211          | 0.096         | 62.808          | 0.000       | 5.833      | 6.209       |
+| `rain`             | -13.6096        | 3.112         | -4.373          | 0.000       | -19.712    | -7.508      |
+| `CityCenter`          | 1.27e+04        | 165.826       | 76.596          | 0.000       | 1.24e+04   | 1.3e+04     |
+| `Region_N`           | 913.9911        | 199.195       | 4.588           | 0.000       | 523.408    | 1304.574    |
+| `Region_SE`          | -55.6066        | 115.086       | -0.483          | 0.629       | -281.268   | 170.055     |
+| `Region_NE`          | -195.0074       | 212.316       | -0.918          | 0.358       | -611.318   | 221.303     |
+| `Bike_Lanes`       | 3981.4436       | 311.068       | 12.799          | 0.000       | 3371.498   | 4591.389    |
+| `month_2`          | 943.6973        | 225.373       | 4.187           | 0.000       | 501.785    | 1385.610    |
+| `month_3`          | 800.3775        | 220.706       | 3.626           | 0.000       | 367.615    | 1233.140    |
+| `month_4`          | 646.7796        | 216.860       | 2.982           | 0.003       | 221.559    | 1072.001    |
+| `month_5`          | 963.1984        | 213.275       | 4.516           | 0.000       | 545.008    | 1381.389    |
+| `month_6`          | 1565.4265       | 223.054       | 7.018           | 0.000       | 1128.061   | 2002.792    |
+| `month_7`         | 1439.4031       | 216.589       | 6.646           | 0.000       | 1014.713   | 1864.093    |
+| `month_8`         | 1344.8244       | 216.095       | 6.223           | 0.000       | 921.104    | 1768.545    |
+| `month_9`          | 2093.4939       | 219.591       | 9.534           | 0.000       | 1662.918   | 2524.070    |
+| `month_10`         | 1828.2734       | 213.059       | 8.581           | 0.000       | 1410.506   | 2246.041    |
+| `month_11`         | 1251.7521       | 218.861       | 5.719           | 0.000       | 822.608    | 1680.897    |
 
-## WLS Training Summary
-
-### WLS Regression Results
-
-| **Variable**         | **coef**       | **std err** | **t**      | **P** | **[0.025**     | **0.975]**    |
-|:-----------------|:-----------|:--------|:--------|:------|:----------|:----------|
-| constant            | -5934.4661 | 273.398 | -21.706 | 0.000 | -6470.563 | -5398.369 |
-| Strava_count | 6.1157    | 0.052   | 118.129 | 0.000 | 6.014     | 6.217     |
-| rain             | -13.3057  | 1.384   | -9.614  | 0.000 | -16.019   | -10.592   |
-| Area_CC          | 1.541e+04 | 116.661 | 132.058 | 0.000 | 1.52e+04  | 1.56e+04  |
-| Area_N           | -401.7894 | 177.380 | -2.265  | 0.024 | -749.608  | -53.971   |
-| Area_SE          | -85.1842  | 53.932  | -1.579  | 0.114 | -190.938  | 20.569    |
-| Area_NE          | -214.2369 | 97.044  | -2.208  | 0.027 | -404.528  | -23.946   |
-| Bike_Lanes       | 6710.9627 | 263.229 | 25.495  | 0.000 | 6194.805  | 7227.120  |
-| month_2          | 858.6988  | 93.081  | 9.225   | 0.000 | 676.179   | 1041.219  |
-| month_3          | 779.0489  | 79.965  | 9.742   | 0.000 | 622.248   | 935.849   |
-| month_4          | 520.0684  | 94.947  | 5.477   | 0.000 | 333.891   | 706.246   |
-| month_5          | 810.8211  | 92.599  | 8.756   | 0.000 | 629.247   | 992.395   |
-| month_6          | 1369.9557 | 98.532  | 13.904  | 0.000 | 1176.748  | 1563.163  |
-| month_7          | 1251.0766 | 90.919  | 13.760  | 0.000 | 1072.796  | 1429.357  |
-| month_8          | 1194.2051 | 95.440  | 12.513  | 0.000 | 1007.059  | 1381.351  |
-| month_9          | 1905.4191 | 95.140  | 20.027  | 0.000 | 1718.862  | 2091.977  |
-| month_10         | 1683.6207 | 84.458  | 19.934  | 0.000 | 1518.010  | 1849.231  |
-| month_11         | 1182.7234 | 106.593 | 11.096  | 0.000 | 973.709   | 1391.738  |
-| month_12         | 493.7711  | 89.968  | 5.488   | 0.000 | 317.355   | 670.187   |
-
-### Note
-- **WLS Accuracy:** 80.35%
-- **Unweighted R-squared (WLS)** 0.9034
-- **Validation RMSE (WLS):** 2148.0559
-- **Test RMSE (WLS):** 2538.4753
-- **Test MAE (WLS):** 1648.7908
-
+#### *Note*
+**OLS Accuracy**: 87.05%  
+**Validation RMSE**: 2213.0555  
+**Test RMSE**: 2123.8221  
+**Test MAE**: 1729.3820
 
 For full documentation of the modeling process, see here: (coming soon!)
 
-### Performance Interpretation
+## Data Insights
 
-This is a weekly model, which means it uses weekly Strava trip counts to infer the weekly cycle counts.
+The regression model shows that Strava trip counts have a significant and positive relationship with actual cycle counts. Specifically, the coefficient for `strava_counts` is approximately 6.0211, meaning that for each additional Strava trip recorded, the total cycle count increases by roughly 6 trips, holding all other variables constant. This strong correlation indicates that Strava data is a good predictor of overall cycling volumes at the route-specific level in Dublin.
 
-Explained variation (R²) is the most common performance measure for continuous outcomes. An R-squared score of 0.9034 indicates that 90.3% of the data is explained by the model. The accuracy score reflects the prediction ability of the model. An accuracy of 80.35% indicates that the predicted cycling trip volume is 80.35% correct against the actual cycling trip volume, under a train/test split machine-learning practice.
+Rainfall(`rain`) negatively affects cycle counts, with a coefficient of -13.6096, which suggests that for each millimeter increase in rainfall, there is a corresponding  14 nubmers decrease in cycling activity. This result aligns with the expectation that adverse weather conditions discourage cycling.
 
-Below is a visualization of how the model fits the values:
+The regional dummy variables also provide insight into how different areas in Dublin affect cycling volumes. For instance, the positive coefficients for `Regions_S` and `Regions_SE` suggest that these areas have higher cycling volumes compared to the reference category, while negative coefficients for `Regions_N` and `Regions_NE` suggest lower cycling volumes.
+
+The `CityCenter` variable has a positive coefficient, indicating that being in the city center is associated with higher cycling volumes, likely due to higher population density and more destinations within close proximity.
+
+The coefficients for the summer months (e.g., June, July, August) are significantly positive, indicating higher cycling activity during these months. For example, the coefficient for June(`month_6`) is 1565.4265 , showing a substantial increase in cycling trips during this month.
+
+Lastly, the presence of bike lanes (`Bike_Lanes`) significantly increases cycling activity, which underscores the importance of dedicated cycling infrastructure in promoting biking.
+
+
+
+
+## Validation
+
+Overall the model reached 87% accuracy on a train/test split excercise. Validation RMSE (OLS): 2213.0555 and Test RMSE (OLS): 2123.8221 are close to each other, indicating no overfitting issues observed.
+Below is a visualization of how the model fits the values overall. The closer the data is to the red line the better the data is fitted by the model. The chart shows satisfying results for the model fit visually
 
 ### Chart 2: Actual vs. Predicted Values
 ![Actual vs. Predicted Values](Visulisations/2.png)
 
-## Data Insights
 
-- **Strava Trip Count**: The coefficient for Strava trip count is 5.3782, implying that, holding other factors constant, a one-unit increase in weekly Strava trips is associated with an increase of 5.3782 in total cycling trips.
-- **Rain**: The coefficient for rain is -14.6000, indicating that rainy weather reduces cycling trips by approximately 14.6 units per unit of rain.
-- **Seasonal Variations**: The coefficients for the summer months (e.g., June, July, August) are significantly positive, indicating higher cycling activity during these months. For example, the coefficient for June is 1612.8795, showing a substantial increase in cycling trips during this month.
-
-### Unexpected Findings
-- **Off-Street Paths and Bike Lanes**: Both Off-Street Paths (-7161.1806) and Bike Lanes (-6037.6537) have negative coefficients, which is counterintuitive. This may suggest model adjustments or sampling issues. Further investigation is required to understand these results better.
-
-## Validation
 
 We validated the model predictions against actual cycling volumes for several locations, with the y-axis representing weekly values over the period 2021-2023.
 
@@ -171,36 +177,38 @@ For many locations, the model's predictions closely match the actual cycling vol
 
 ![N11 (Inbound)](Visulisations/N11.png)
 
-### Chat 5: Original vs Predicted Values (Grange Road)
+### Chat 5: Original vs Predicted Values (Richmond)
 
-![Grange](Visulisations/Grange Rd.png)
+![Rich](Visulisations/Richmond.png)
 
 
 However, the model's accuracy decreased in locations closer to . For instance, the prediction was less accurate for Clontarf:
-### Chat 6: Original vs Predicted Values (Clontarf - Pebble Beach Carpark)
-![Clontarf](Visulisations/Clontraf.png)
+
+### Chat 6: Original vs Predicted Values (Guild)
+![Guild](Visulisations/Guild.png)
 
 
-### Chat 6: Original vs Predicted Values (Richmond Rd Upper)
+### Chat 6: Original vs Predicted Values (Drumcondra)
 
-![Richmond](Visulisations/Richmond.png)
+![Drum](Visulisations/Drum.png)
 
 We also validated the model against manual count data for two city center locations—Amien Street and IFSC, which are not included in the traning data. Those mannual count are from Dublin City Council official traffic counts. The table below summarizes the comparison:
 
 ### Table E: Validation With Mannual Counts (Amien St & IFSC)
-| **Time & Location**       | **Strava Count** | **Manual Count** | **Predicted Value** | **Difference** |
+| **Time & Location**       | **Strava Count** | **Manual Count** | **Predicted Value** | **Accuracy** |
 |--------------------|------------------|------------------|---------------------|----------------|
 | *2024 May 13-19*     |                  |                  |                     |                |
-| **Amien St**       | 600              | 14,342           | 12,486           | -13%           |
-| **IFSC**           | 615              | 13,126           | 12,566           | -4%            |
+| **Amien St**       | 600              | 14342           | 20663           | 55.93%           |
+| **IFSC**           | 615              | 13126           | 20755          | 41.88%            |
 
-The validation also showed high validity of the model.
+Here are some potentail causes of the inaccuracy results for some locations
 
-In summary, the validation showed mixed results for the model's performance. It works better for non-city center areas(e.g. Seaepoint) and is less accurate for locations close to the city center(e.g. Richmond Rd). Therefore, I believe the model is best suited for route-based analysis—aggregating predictions across entire cycling routes can yield more accurate results since the combined results may weight out the prediction errors. However, it's important to note that there's currently no method to validate route-based analysis, as data on cycling trips for entire routes is unavailable.
+1. Data Discontinuity Due to Roadworks​
 
-Despite the variations in volume accuracy, the model effectively captures trends and seasonal changes in cycling numbers, providing valuable insights into cycling behavior.
+2. Potential sensor issues:. For example, Castleknock Totem and Coast Road Totem recorded fewer cyclists than Strava data.​
 
-
+3. Lack of counters in the City Centre leads to lower accuracy in City Centre areas.
+   
 ## Use of the Model
 
 To use this model, follow these steps:
@@ -253,18 +261,6 @@ I have also interpolated the cycling trip values for several key cycleroutes in 
 ### Chart 7: Visualisation of Predicted Weekly Cycling Trips for Various Routes:
 
 ![Vis](Visulisations/prediction.png)
-
-## Shortcomings and Future Improvements
-
-While the model shows a good predictive ability overall, several areas for improvement have been identified:
-
-1. **Counter Location Bias**: The existing cycling counters in Dublin are predominantly located within the Dublin City Council (DCC) and Dún Laoghaire-Rathdown (DLR) areas. There is a lack of representation in peripheral areas such as the South Dublin and Fingal. Additionally there's a lack of counters at the city center (See **Figure 1**). This geographical limitation could lead to biased predictions, as the model does not fully capture cycling behavior across different types of streets and environments. This can be improved by locating cyclecounters at more diversed locations.
-
-2. **Construction Impact**: Ongoing cycle route constructions may influence cycling activity, but this factor is not currently integrated into the model. This could result in discrepancies between predicted and actual cycling counts, especially in areas undergoing significant infrastructure changes, like the [C2CC project](https://www.dublincity.ie/residential/transportation/active-travel/projects/clontarf-city-centre-project).
-
-3. **Strava Data Precision**: The Strava data used in the model has been anonymized by rounding trip counts to the nearest multiple of five(i.e. 5,10,15,20...). This lack of granularity can introduce inaccuracies, particularly in areas with lower cycling volumes, where small changes in actual counts might lead to more significant deviations in predictions.
-
-4. **Model Limitations**: The negative coefficients for Off-Street Paths and Bike Lanes, which are counterintuitive, suggest potential issues with the model specification. These findings may indicate that additional variables or a different modeling approach, such as non-linear models or interaction terms, might better capture the complex relationships between cycling activity and infrastructure.
 
 
 ## Conclusion & key takeaways
