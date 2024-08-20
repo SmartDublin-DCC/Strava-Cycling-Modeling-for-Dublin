@@ -93,7 +93,7 @@ The figure below visualizes the locations of existing cycle counters in Dublin. 
 
 ### Figure 1: Location of existing cyclecounters
 
-![Location of Cyclecounts](https://file%2B.vscode-resource.vscode-cdn.net/Users/chris/Library/Mobile%20Documents/com~apple~CloudDocs/%E5%B7%A5%E4%BD%9C/Data%20Storytelling/Strava/Visulisations/dublin.png)
+![Location of Cyclecounts](Visulisations/dublin.png)
 
 ## Results and model performance
 After running the Weighted Least Squares (WLS) regression in Python, the results are summarized below:
