@@ -70,7 +70,7 @@ The model is a multiple linear regression model using Ordinary Least Squares (OL
 The model is given by:
 
 $$
-\text{cycle\\_counts} = \beta\\_0 + \beta\\_1 \cdot \text{strava\\_counts} + \beta\\_i \cdot \text{controls} + \varepsilon
+\text{cycle\\_counts} = \beta\_0 + \beta\\_1 \cdot \text{strava\\_counts} + \beta\\_i \cdot \text{controls} + \varepsilon
 $$
 
 Where:
