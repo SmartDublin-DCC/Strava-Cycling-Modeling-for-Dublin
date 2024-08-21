@@ -63,22 +63,22 @@ From Chart 2, we can also see that, despite the correlation, the variance is lar
 | Regions: `Regions_N`,`Region_NE`,`Region_SW`  | Geolocation of the point of interest: North, Northeast, Southwest |
 | Months: `month_2`,`month_3`...,`month_12`                  | Months: January to December                                       |
 | `CityCenter`             | Whether the location is in the city center (defined by the canal)  |
-| `Bike\_Lanes`             | Whether the location has bike lane availability - by manul observation from Google Map                  |
+| `Bike_Lanes`             | Whether the location has bike lane availability - by manul observation from Google Map                  |
 
 The model is a multiple linear regression model using Ordinary Least Squares (OLS) estimator.
 
 The model is given by:
 
 $$
-\text{cycle\_counts} = \beta_0 + \beta_1 \cdot \text{strava\_counts} + \beta_i \cdot \text{controls} + \varepsilon
+\text{cycle\\_counts} = \beta\\_0 + \beta\\_1 \cdot \text{strava\\_counts} + \beta\\_i \cdot \text{controls} + \varepsilon
 $$
 
 Where:
-- $\text{cycle\_counts}$ is the dependent variable, the ground truth cycle count data.
-- $\beta_0$ is the intercept.
-- $\beta_i$ are the coefficients for each independent variable.
+- $\text{cycle\\_counts}$ is the dependent variable, the ground truth cycle count data.
+- $\beta\\_0$ is the intercept.
+- $\beta\\_i$ are the coefficients for each independent variable.
 - $\text{controls}$ are the control variables, which include the variables in **Table A**.
-- $\text{strava\_counts}$ are the independent variables, the trip counts from Strava.
+- $\text{strava\\_counts}$ are the independent variables, the trip counts from Strava.
 - $\varepsilon$ is the error term.
 
 The descriptive statistics in Table B summarize the data across three key variables: Actual cycle counts (`cycle_counts`), Strava cycle counts (`strava_counts`), and rainfall (`rain`). All the data are weekly aggregated. The dataset has 2,657 observations, which is the number of observations after removing missing values. The average actual cycle count is 5,450 with a high standard deviation of 5,303.81, indicating significant variability. The Strava cycle count has a mean of 439.16 and an even higher standard deviation of 547.53, showing a broad range of Strava activity levels across different times and locations. The weekly rainfall average is 13.87 mm.
@@ -234,27 +234,28 @@ To estimate the cycle counts for a week with the following conditions:
 The calculation follows this formula:
 
 $$
-\text{Cycle\_counts} = 
-\text{constant} + (\text{Strava\_count} \times \text{Coefficient}) + (\text{rain} \times \text{Coefficient}) + 
-(\text{Region\_N} \times \text{Coefficient}) + (\text{month\_6} \times \text{Coefficient}) + 
-(\text{Bike\_Lanes} \times \text{Coefficient})
+\text{Cycle\\_counts} = 
+\text{constant} + (\text{Strava\\_count} \times \text{Coefficient}) + (\text{rain} \times \text{Coefficient}) + 
+(\text{Region\\_N} \times \text{Coefficient}) + (\text{month\\_6} \times \text{Coefficient}) + 
+(\text{Bike\\_Lanes} \times \text{Coefficient})
 $$
 
 Substituting the specific coefficients from the model:
 
 $$
-\text{Cycle\_counts} = 
+\text{Cycle\\_counts} = 
 -3288.1063 + (100 \times 6.0211) + (2 \times -13.6096) + 
 (913.9911) + (1565.4265) + (1 \times 3981.4436)
 $$
 
 $$
-\text{Cycle\_counts} = -3288.1063 + 602.11 - 27.2192 + 913.9911 + 1565.4265 + 3981.4436
+\text{Cycle\\_counts} = -3288.1063 + 602.11 - 27.2192 + 913.9911 + 1565.4265 + 3981.4436
 $$
 
 $$
-\text{Cycle\_counts} = 3747.6457
+\text{Cycle\\_counts} = 3747.6457
 $$
+
 
 So, under these specific conditions, the estimated weekly cycle count is **3748**.
 
