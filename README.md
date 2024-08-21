@@ -70,13 +70,13 @@ The model is a multiple linear regression model using Ordinary Least Squares (OL
 The model is given by:
 
 $$
-\text{cycle\\_counts} = \beta\_0 + \beta\\_1 \cdot \text{strava\\_counts} + \beta\\_i \cdot \text{controls} + \varepsilon
+\text{cycle\\_counts} = \beta\_0 + \beta\_1 \cdot \text{strava\\_counts} + \beta\_i \cdot \text{controls} + \varepsilon
 $$
 
 Where:
 - $\text{cycle\\_counts}$ is the dependent variable, the ground truth cycle count data.
-- $\beta\\_0$ is the intercept.
-- $\beta\\_i$ are the coefficients for each independent variable.
+- $\beta\_0$ is the intercept.
+- $\beta\_i$ are the coefficients for each independent variable.
 - $\text{controls}$ are the control variables, which include the variables in **Table A**.
 - $\text{strava\\_counts}$ are the independent variables, the trip counts from Strava.
 - $\varepsilon$ is the error term.
