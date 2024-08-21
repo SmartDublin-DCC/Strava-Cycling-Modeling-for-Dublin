@@ -157,57 +157,49 @@ Lastly, the presence of bike lanes (`Bike_Lanes`) significantly increases cyclin
 
 ## Validation
 
-Overall the model reached 87% accuracy on a train/test split excercise. Validation RMSE (OLS): 2213.0555 and Test RMSE (OLS): 2123.8221 are close to each other, indicating no overfitting issues observed.
-Below is a visualization of how the model fits the values overall. The closer the data is to the red line the better the data is fitted by the model. The chart shows satisfying results for the model fit visually
+The model achieved an overall accuracy of 87% in a train/test split exercise. The Validation RMSE (OLS) is 2213.0555, and the Test RMSE (OLS) is 2123.8221, which are quite close, indicating that there are no significant overfitting issues. Below is a visualization showing the model's fit. The closer the data points are to the red line, the better the model fit. The chart indicates satisfactory results visually.
 
 ### Chart 2: Actual vs. Predicted Values
 ![Actual vs. Predicted Values](Visulisations/2.png)
 
+We validated the model's predictions against actual cycling volumes for various locations, with the y-axis showing weekly values from 2021 to 2023.
 
+For many locations, the model's predictions align well with the actual cycling volumes recorded by cycle counters. For instance:
 
-We validated the model predictions against actual cycling volumes for several locations, with the y-axis representing weekly values over the period 2021-2023.
-
-For many locations, the model's predictions closely match the actual cycling volumes recorded by cycle counters. For example:
-
-### Chat 3: Original vs Predicted Values (Seapoint)
-
+### Chart 3: Original vs. Predicted Values (Seapoint)
 ![Seapoint](Visulisations/Seapoint.png)
 
-### Chat 4: Original vs Predicted Values (N11 Inbound)
-
+### Chart 4: Original vs. Predicted Values (N11 Inbound)
 ![N11 (Inbound)](Visulisations/N11.png)
 
-### Chat 5: Original vs Predicted Values (Richmond)
+### Chart 5: Original vs. Predicted Values (Richmond)
+![Richmond](Visulisations/Richmond.png)
 
-![Rich](Visulisations/Richmond.png)
+However, the model's accuracy decreased at certain locations. For example, predictions for Clontarf were less accurate:
 
+### Chart 6: Original vs. Predicted Values (Clontarf)
+![Clontarf](Visulisations/Clontarf.png)
 
-However, the model's accuracy decreased in locations closer to . For instance, the prediction was less accurate for Clontarf:
-
-### Chat 6: Original vs Predicted Values (Guild)
+### Chart 7: Original vs. Predicted Values (Guild)
 ![Guild](Visulisations/Guild.png)
 
+### Chart 8: Original vs. Predicted Values (Drumcondra)
+![Drumcondra](Visulisations/Drum.png)
 
-### Chat 6: Original vs Predicted Values (Drumcondra)
+Additionally, we validated the model using manual count data for two city center locations—Amien Street and IFSC, which were not included in the training data. These manual counts were sourced from Dublin City Council's official traffic counts. The comparison is summarized in the table below:
 
-![Drum](Visulisations/Drum.png)
-
-We also validated the model against manual count data for two city center locations—Amien Street and IFSC, which are not included in the traning data. Those mannual count are from Dublin City Council official traffic counts. The table below summarizes the comparison:
-
-### Table E: Validation With Mannual Counts (Amien St & IFSC)
+### Table E: Validation With Manual Counts (Amien St & IFSC)
 | **Time & Location**       | **Strava Count** | **Manual Count** | **Predicted Value** | **Accuracy** |
-|--------------------|------------------|------------------|---------------------|----------------|
-| *2024 May 13-19*     |                  |                  |                     |                |
-| **Amien St**       | 600              | 14342           | 20663           | 55.93%           |
-| **IFSC**           | 615              | 13126           | 20755          | 41.88%            |
+|---------------------------|------------------|------------------|---------------------|--------------|
+| *2024 May 13-19*          |                  |                  |                     |              |
+| **Amien St**              | 600              | 14342            | 20663               | 55.93%       |
+| **IFSC**                  | 615              | 13126            | 20755               | 41.88%       |
 
-Here are some potentail causes of the inaccuracy results for some locations
+### Potential Causes for Inaccuracy
+1. **Data Discontinuity Due to Roadworks**: e.g. Drumcondra Cyclists Counter is not on site due to Roadworks since mid-2023.
+2. **Potential Sensor Issues**: For example, Castleknock Totem and Coast Road Totem recorded fewer cyclists compared to Strava data.
+3. **Lack of Counters in the City Centre**: This results in lower accuracy in city center areas.
 
-1. Data Discontinuity Due to Roadworks​
-
-2. Potential sensor issues:. For example, Castleknock Totem and Coast Road Totem recorded fewer cyclists than Strava data.​
-
-3. Lack of counters in the City Centre leads to lower accuracy in City Centre areas.
    
 ## Use of the Model
 
