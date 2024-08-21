@@ -143,7 +143,7 @@ After running the Ordinary Least Squares(OLS) regression in Python, the results 
 **Test RMSE**: 2123.8221  
 **Test MAE**: 1729.3820
 
-For full documentation of the modeling process, see here: (coming soon!)
+For full documentation of the modeling process, see here: (`Strava_Model_Code_0820.ipynb`)
 
 ## Data Insights
 
