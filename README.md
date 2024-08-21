@@ -1,6 +1,7 @@
 # Strava-Cycling-Modeling-for-Dublin
 
 *For full documentation of the modeling process, see this file: (`Strava_Model_Code_0820.ipynb`)*
+
 *This report includes aggregated and de-identified data from Strava Metro.*
 
 ## The Author
