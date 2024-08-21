@@ -1,5 +1,8 @@
 # Strava-Cycling-Modeling-for-Dublin
 
+*For full documentation of the modeling process, see this file: (`Strava_Model_Code_0820.ipynb`)*
+*This report includes aggregated and de-identified data from Strava Metro.*
+
 ## The Author
 
 [Chris Luo](https://chrislu0.wordpress.com/), Data Analyst, Smart Dublin, Dublin City Council
@@ -143,7 +146,7 @@ After running the Ordinary Least Squares(OLS) regression in Python, the results 
 **Test RMSE**: 2123.8221  
 **Test MAE**: 1729.3820
 
-For full documentation of the modeling process, see here: (`Strava_Model_Code_0820.ipynb`)
+For full documentation of the modeling process, see this file: (`Strava_Model_Code_0820.ipynb`)
 
 ## Data Insights
 
@@ -259,7 +262,7 @@ $$
 
 So, under these specific conditions, the estimated weekly cycle count is **3748**.
 
-I have also interpolated the cycling trip values for several key cycle routes in Dublin (weekly summed figure) using the Strava data of the whole routes. I have included the raw data in the file [weekly_prediction](`RBA and Validation/weekly prediction.csv`). Below is a quick view of the results:
+I have also interpolated the cycling trip values for several key cycle routes in Dublin (weekly summed figure) using the Strava data of the whole routes. I have included the raw data in the file [weekly_prediction](`Route Based Analysis/weekly prediction.csv`). Below is a quick view of the results:
 
 ### Chart 10: Visualisation of Predicted Weekly Cycling Trips for Various Routes:
 
@@ -289,6 +292,5 @@ Serveral improvements can be done to increase the model accuracy and generalisat
 3. [Bike Counts DLR - Dublinked](https://data.smartdublin.ie/dataset/bicycle-traffic-counts-dlr)
 4. [Modeling bicycle volume using crowdsourced data from Strava smartphone application, International Journal of Transportation Science and Technology](https://www.sciencedirect.com/science/article/pii/S2046043020300204)
 
-#### Acknowledgement:
-*This report includes aggregated and de-identified data from Strava Metro.*
+
 
