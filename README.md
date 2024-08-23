@@ -193,7 +193,7 @@ However, the model's accuracy decreased at certain locations. For example, predi
 
 So is Guild Street and Drumcondra.
 
-### Chart 8: Original vs. Predicted Values (Guild)
+### Chart 8: Original vs. Predicted Values (Guild Street)
 ![Guild](Visulisations/Guild.png)
 
 ### Chart 9: Original vs. Predicted Values (Drumcondra)
