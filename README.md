@@ -19,6 +19,10 @@ The results could help researchers, decision makers, and businesses understand c
 - Jack Kavanagh - Open Data Lead - Smart Dublin
 
 - Alan Murphy - Regional Team Manager - Smart Dublin
+  
+- Surya Eswarasamy - Data Analyst - Smart Dublin
+  
+- Carlos Gomez - Senior Customer Success Specialist - Strava Metro
 
 
 ## Guide to the model:
