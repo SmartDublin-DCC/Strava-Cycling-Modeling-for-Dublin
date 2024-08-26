@@ -31,4 +31,4 @@ The results could help researchers, decision makers, and businesses understand c
 
 - *For the **full code log** of the modeling process, see this file: [Strava_Model_Code_0820.ipynb](https://github.com/SmartDublin-DCC/Strava-Cycling-Modeling-for-Dublin/blob/main/Strava_Model_Code_0820.ipynb)*
 
-- *For the **prediction of several key Active Travel routes** in Dublin see this file: [Weekly Prediction.csv](ttps://github.com/SmartDublin-DCC/Strava-Cycling-Modeling-for-Dublin/blob/main/Route%20Based%20Analysis/weekly%20prediction.csv)*
+- *For the **prediction of several key Active Travel routes** in Dublin see this file: [Weekly Prediction.csv](https://github.com/SmartDublin-DCC/Strava-Cycling-Modeling-for-Dublin/blob/main/Route%20Based%20Analysis/weekly%20prediction.csv)*
