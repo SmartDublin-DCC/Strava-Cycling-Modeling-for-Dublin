@@ -269,6 +269,9 @@ I have also interpolated the cycling trip values for several key cycle routes in
 
 ![Vis](Visulisations/prediction.png)
 
+*For more predictions of existing cycling routes see here:*
+[View the Flourish Chart](https://public.flourish.studio/visualisation/19236869/)
+
 
 ## Future Improvements
 
