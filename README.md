@@ -27,7 +27,7 @@ The results could help researchers, decision makers, and businesses understand c
 
 - *For the **full documentation** of the modeling process, see this file: [DOCUMENTATION.md](https://github.com/SmartDublin-DCC/Strava-Cycling-Modeling-for-Dublin/blob/main/DOCUMENTATION.md)*
 
-- *For how to **use the Strava Cycling Model** for prediction analysis, see this file: [ReadMe.md](https://github.com/SmartDublinGit/Strava-Cycling-Modeling-for-Dublin/blob/main/Prediction%20model/ReadMe.md)*
+- *To quickly **use the Strava Cycling Model** for prediction analysis, see this file: [ReadMe.md](https://github.com/SmartDublinGit/Strava-Cycling-Modeling-for-Dublin/blob/main/Prediction%20model/ReadMe.md)*
 
 - *For the **full code log** of the modeling process, see this file: [Strava_Model_Code_0820.ipynb](https://github.com/SmartDublin-DCC/Strava-Cycling-Modeling-for-Dublin/blob/main/Strava_Model_Code_0820.ipynb)*
 
