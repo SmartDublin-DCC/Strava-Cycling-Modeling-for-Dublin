@@ -272,6 +272,7 @@ I have also interpolated the cycling trip values for several key cycle routes in
 *For more predictions of existing cycling routes see here:*
 [View the Flourish Chart](https://public.flourish.studio/visualisation/19236869/)
 
+*If you want to run the model to make predictions on other cycling routes in Dublin with Strava data, please refer to this file:[ReadMe.md](https://github.com/SmartDublinGit/Strava-Cycling-Modeling-for-Dublin/blob/main/Prediction%20model/ReadMe.md)*
 
 ## Future Improvements
 
