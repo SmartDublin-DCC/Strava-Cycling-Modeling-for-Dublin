@@ -14,8 +14,8 @@ This guide will help you run a prediction model using your Strava data. The mode
 
 ### 3. Prepare Your CSV File with Strava Data
 
-- Ensure your Strava data CSV file is formatted correctly. On how to download cycling data from `Strava Metro` see [here](). The CSV file should only have the following columns:
-  - `Time`: A datetime column containing the date of weekly summed record. The format should be `YYYY-MM-DD`.
+- Ensure your Strava data CSV file is formatted correctly. On how to download cycling data from `Strava Metro` see [here](https://github.com/SmartDublinGit/Strava-Cycling-Modeling-for-Dublin/blob/main/Prediction%20model/How%20to%20download%20Strava%20Metro%20route%20data.pdf). The CSV file should only have the following columns:
+  - `Time`: A datetime column containing the date of weekly summed record. The format should be `YYYY-MM-DD`. On how to resample the daily data to weekly, see [here](https://github.com/SmartDublinGit/Strava-Cycling-Modeling-for-Dublin/blob/main/Route%20Based%20Analysis/Weekly_resampling.ipynb)
   - `total_trip_count`: The total count of Strava trips for the given time period.
 
 ### 4. Run the Python Script
