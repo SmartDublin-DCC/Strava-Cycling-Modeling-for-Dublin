@@ -12,9 +12,7 @@ We hope the model will accurately estimate cyclist volumes in Dublin, especially
 
 The results could help researchers, decision makers, and businesses understand cycling patterns without needing expensive cycle counter networks, saving millions of euros. The model's replicability also makes it valuable for other cities.
 
-## Partners involved:
-
-- Chris Luo - Data Analyst - Smart Dublin
+## Other Partners involved:
 
 - Jack Kavanagh - Open Data Lead - Smart Dublin
 
@@ -28,6 +26,8 @@ The results could help researchers, decision makers, and businesses understand c
 ## Guide to the model:
 
 - *For the **full documentation** of the modeling process, see this file: [DOCUMENTATION.md](https://github.com/SmartDublin-DCC/Strava-Cycling-Modeling-for-Dublin/blob/main/DOCUMENTATION.md)*
+
+- *For how to **use the Strava Cycling Model** for prediction analysis, see this file[ReadMe.md](
 
 - *For the **full code log** of the modeling process, see this file: [Strava_Model_Code_0820.ipynb](https://github.com/SmartDublin-DCC/Strava-Cycling-Modeling-for-Dublin/blob/main/Strava_Model_Code_0820.ipynb)*
 
