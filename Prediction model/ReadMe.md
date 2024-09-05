@@ -19,10 +19,15 @@ This guide will help you run a prediction model using your Strava data. The mode
   - `total_trip_count`: The total count of Strava trips for the given time period.
 
 ### 4. Run the Python Script
-
+- Make sure the rainfall csv is in the same folder as `Prediction.py`
 - Open a terminal or command prompt.
 - Navigate to the directory where the `Prediction.py` file is located.
+
 - Run the Python script using the following command:
 
   ```bash
   python Prediction.py
+
+- Then the predicted file should be generated in the same folder!
+
+Good luck
