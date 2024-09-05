@@ -272,13 +272,14 @@ I have also interpolated the cycling trip values for several key cycle routes in
 *For more predictions of existing cycling routes see here:*
 [View the Flourish Chart](https://public.flourish.studio/visualisation/19236869/)
 
+*If you want to run the model to make predictions on other cycling routes in Dublin with Strava data, please refer to this file:[ReadMe.md](https://github.com/SmartDublinGit/Strava-Cycling-Modeling-for-Dublin/blob/main/Prediction%20model/ReadMe.md)*
 
 ## Future Improvements
 
 Serveral improvements can be done to increase the model accuracy and generalisation ability:
 1. Include data from new sensors and corrected sensors. Especially for sensors in the central city.
 2. Include manual survey data to enlarge the training dataset(e.g. Canal Cordon Count)
-3. Add more independent control variables that might impact strava's correlation to cycling volumes like demographic and socio-economic factors.
+3. Add more independent control variables that might impact strava's correlation to cycling volumes like gradient, cycling infrastructure, demographic and socio-economic factors.
 
 
 ## Conclusion & key takeaways
