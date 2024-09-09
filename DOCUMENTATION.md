@@ -4,9 +4,44 @@
 
 *This report includes aggregated and de-identified data from Strava Metro.*
 
+
 ## The Author
 
 [Chris Luo](https://chrislu0.wordpress.com/), Data Analyst, Smart Dublin, Dublin City Council
+
+## Table of Content
+
+- [Strava-Cycling-Modeling-for-Dublin](#strava-cycling-modeling-for-dublin)
+  - [The Author](#the-author)
+  - [Table of Content](#table-of-content)
+  - [Introduction](#introduction)
+  - [Strava Metro](#strava-metro)
+  - [The Model and Data](#the-model-and-data)
+    - [Chart 1: Cycle Counter vs. Strava Trip Counts Over Time in Seapoint (2020-2023, Weekly Summed)](#chart-1-cycle-counter-vs-strava-trip-counts-over-time-in-seapoint-2020-2023-weekly-summed)
+    - [Chart 2: Cycle Counter vs. Strava Trip Counts (2020-2023, Weekly Summed)](#chart-2-cycle-counter-vs-strava-trip-counts-2020-2023-weekly-summed)
+    - [Table A: List of Control Variables](#table-a-list-of-control-variables)
+    - [Table B: Descriptive Statistics](#table-b-descriptive-statistics)
+    - [Figure 1: Location of Existing Cycle Counters](#figure-1-location-of-existing-cycle-counters)
+  - [Results and Model Performance](#results-and-model-performance)
+    - [Table C: OLS Regression Results](#table-c-ols-regression-results)
+      - [*Note*](#note)
+  - [Data Insights](#data-insights)
+  - [Validation](#validation)
+    - [Chart 3: Actual vs. Predicted Values](#chart-3-actual-vs-predicted-values)
+    - [Chart 4: Original vs. Predicted Values (Seapoint)](#chart-4-original-vs-predicted-values-seapoint)
+    - [Chart 5: Original vs. Predicted Values (N11 Inbound)](#chart-5-original-vs-predicted-values-n11-inbound)
+    - [Chart 6: Original vs. Predicted Values (Richmond)](#chart-6-original-vs-predicted-values-richmond)
+    - [Chart 7: Original vs. Predicted Values (Clontarf)](#chart-7-original-vs-predicted-values-clontarf)
+    - [Chart 8: Original vs. Predicted Values (Guild)](#chart-8-original-vs-predicted-values-guild)
+    - [Chart 9: Original vs. Predicted Values (Drumcondra)](#chart-9-original-vs-predicted-values-drumcondra)
+    - [Table E: Validation With Manual Counts (Amien St \& IFSC)](#table-e-validation-with-manual-counts-amien-st--ifsc)
+    - [Potential Causes for Inaccuracy](#potential-causes-for-inaccuracy)
+  - [Use of the Model](#use-of-the-model)
+    - [Example Calculation](#example-calculation)
+    - [Chart 10: Visualisation of Predicted Weekly Cycling Trips for Various Routes:](#chart-10-visualisation-of-predicted-weekly-cycling-trips-for-various-routes)
+  - [Future Improvements](#future-improvements)
+  - [Conclusion \& key takeaways](#conclusion--key-takeaways)
+  - [References](#references)
 
 ## Introduction
 
