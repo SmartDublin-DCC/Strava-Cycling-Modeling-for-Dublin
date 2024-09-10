@@ -115,7 +115,7 @@ $$
 Where:
 - $\text{cycle\\_counts}$ is the dependent variable, the ground truth cycle count data.
 - $\beta\_0$ is the intercept.
-- $\beta\_i$ are the coefficients for each independent variable.
+- $\beta\_i$ are the coefficients for each control variable.
 - $\text{controls}$ are the control variables, which include the variables in **Table A**.
 - $\text{strava\\_counts}$ are the independent variables, the trip counts from Strava.
 - $\varepsilon$ is the error term.
