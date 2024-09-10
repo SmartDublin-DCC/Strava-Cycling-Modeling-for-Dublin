@@ -248,7 +248,7 @@ As predicting the number of cyclists at certain locations can be very accurate a
 ### Potential Causes for Inaccuracy
 1. **Data Discontinuity Due to Roadworks**: e.g. Drumcondra Cyclists Counter is not on site due to Roadworks since mid-2023.
 2. **Potential Sensor Issues**: For example, Castleknock Totem and Coast Road Totem recorded fewer cyclists compared to Strava data due to cycle counter problems. 
-3. **Lack of Counters in the City Centre**: This results in lower accuracy in city center areas like Amien Street amd IFSC.
+3. **Lack of Counters in the City Centre**: This results in lower accuracy in city center areas like Guild Street amd IFSC.
 
 ## Use of the Model
 
